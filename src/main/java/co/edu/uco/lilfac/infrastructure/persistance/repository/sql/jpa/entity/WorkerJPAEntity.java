@@ -16,24 +16,24 @@ public class WorkerJPAEntity {
 	@Column(name = "id")
 	private UUID id;
 	
-	@Column(name="nombre")
+	@Column(name="name")
 	private String name;
 	
-	@JoinColumn(name="tipoId")
+	@JoinColumn(name="id_type")
 	private UUID idType;
 	
-	@Column(name="numeroId")
+	@Column(name="id_number")
 	private String idNumber;
 	
-	@Column(name="telefono")
+	@Column(name="phone_number")
 	private String phoneNumber;
 	
-	@Column(name="correo")
+	@Column(name="mail")
 	private String mail;
 	
-	@Column(name="direccion")
+	@Column(name="address")
 	private String address;
-	
+
 	
 
 	public WorkerJPAEntity(UUID id, String name, UUID idType, String idNumber, String phoneNumber, String mail,
@@ -47,6 +47,9 @@ public class WorkerJPAEntity {
 		setMail(mail);
 		setAddress(address);
 		}
+	protected WorkerJPAEntity() {
+	    super();
+	}
 
 	private void setId(UUID id) {
 		this.id = id;
