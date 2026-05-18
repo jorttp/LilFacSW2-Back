@@ -1,0 +1,15 @@
+_format_version: "3.0"
+
+services:
+  - name: lilfac-service
+    url: http://host.docker.internal:8081
+    routes:
+      - name: workers-route
+        paths:
+          - /api/v1/workers
+        methods:
+          - POST
+          - GET
+          - PUT
+          - DELETE
+        strip_path: false
