@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.uco.lilfac.features.worker.addworker.application.service.VerificationService;
+import co.edu.uco.lilfac.features.worker.addworker.application.service.PhoneVerificationService;
 
 @RestController
 @RequestMapping("/api/v1/verification")
 public class PhoneVerificationController {
 
-    private final VerificationService verificationService;
+    private final PhoneVerificationService verificationService;
 
-    public PhoneVerificationController(VerificationService verificationService) {
+    public PhoneVerificationController(PhoneVerificationService verificationService) {
         this.verificationService = verificationService;
     }
 

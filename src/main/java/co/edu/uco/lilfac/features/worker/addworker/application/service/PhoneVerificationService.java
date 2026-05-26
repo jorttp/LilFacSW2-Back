@@ -1,6 +1,6 @@
 package co.edu.uco.lilfac.features.worker.addworker.application.service;
 
-public interface VerificationService {
+public interface PhoneVerificationService {
     void sendSmsCode(String phoneNumber);
     boolean verifySmsCode(String phoneNumber, String code);
 }
