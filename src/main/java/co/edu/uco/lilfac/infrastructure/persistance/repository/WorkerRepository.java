@@ -12,5 +12,5 @@ public interface WorkerRepository {
 	List<WorkerEntity> findAll();
 	List<WorkerEntity> findByFilter(WorkerEntity filter);
 	List<WorkerEntity> findById(UUID id);
-
+	boolean existsByIdNumber(String idNumber);
 }

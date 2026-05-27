@@ -2,6 +2,9 @@ package co.edu.uco.lilfac.features.worker.addworker.application.inputport.dto;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class AddWorkerDTO {
 	private UUID id;
 	private String name;
@@ -12,8 +15,15 @@ public class AddWorkerDTO {
 	private String address;
 	
 	
-	public AddWorkerDTO(UUID id, String name, UUID idType, String idNumber, String phoneNumber, String mail,
-			String address) {
+	@JsonCreator
+	public AddWorkerDTO(
+			@JsonProperty("id") UUID id,
+			@JsonProperty("name") String name,
+			@JsonProperty("idType") UUID idType,
+			@JsonProperty("idNumber") String idNumber,
+			@JsonProperty("phoneNumber") String phoneNumber,
+			@JsonProperty("mail") String mail,
+			@JsonProperty("address") String address) {
 		super();
 		setId(id);
 		setName(name);

@@ -90,4 +90,9 @@ public class WorkerJPARepositoryAdapter implements WorkerRepository{
                 .orElse(new ArrayList<>());
 	}
 
+	@Override
+	public boolean existsByIdNumber(String idNumber) {
+		return repository.existsByIdNumber(idNumber);
+	}
+
 }

@@ -8,4 +8,5 @@ import co.edu.uco.lilfac.infrastructure.persistance.repository.sql.jpa.entity.Wo
 
 public interface WorkerJPARepository extends JpaRepository<WorkerJPAEntity, UUID>{
 
+	boolean existsByIdNumber(String idNumber);
 }

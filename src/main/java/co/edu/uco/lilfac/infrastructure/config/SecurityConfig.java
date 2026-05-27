@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -22,9 +23,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+	@Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
+	private String jwkSetUri;
+
 	@Bean
 	public JwtDecoder jwtDecoder() {
-		String jwkSetUri = "http://localhost:8090/realms/lilfac/protocol/openid-connect/certs";
 	    return NimbusJwtDecoder
 	            .withJwkSetUri(jwkSetUri)
 	            .build();
@@ -33,14 +36,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+            .cors(cors -> {})
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-            	.requestMatchers(HttpMethod.GET, "/api/v1/notificaciones").hasRole("ADMIN")
+            	.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            	.requestMatchers(HttpMethod.GET, "/api/v1/notifications").hasRole("ADMIN")
             	.requestMatchers("/api/v1/verification/**").permitAll()
             	.requestMatchers("/actuator/**").permitAll()
             	.requestMatchers(HttpMethod.GET, "/api/v1/parametros").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/workers")
+                    .hasAnyRole("ADMIN", "CAJA", "BODEGA", "LOGISTICA")
                 .requestMatchers(HttpMethod.POST, "/api/v1/workers").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )

@@ -13,3 +13,19 @@ services:
           - PUT
           - DELETE
         strip_path: false
+
+      - name: verification-route
+        paths:
+          - /api/v1/verification
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+
+      - name: parametros-route
+        paths:
+          - /api/v1/parametros
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
