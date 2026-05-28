@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout código
+      - name: Checkout codigo
         uses: actions/checkout@v4
 
       - name: Configurar Java 21
@@ -27,10 +27,9 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
-			
+
       - name: Dar permisos a mvnw
-        run : chmod +x ./mvnw
-	  
+        run: chmod +x ./mvnw
+
       - name: Compilar con Maven
         run: ./mvnw clean package -DskipTests
-		
