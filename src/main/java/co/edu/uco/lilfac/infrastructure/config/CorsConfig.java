@@ -13,7 +13,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 public class CorsConfig {
 
-    @Value("${lilfac.cors.allowed-origins:http://localhost:3001,http://127.0.0.1:3001}")
+    @Value("${lilfac.cors.allowed-origins:http://localhost:3001,http://127.0.0.1:3001,https://lilfac.lol}")
     private String allowedOrigins;
 
     @Bean
@@ -23,7 +23,6 @@ public class CorsConfig {
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
-
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

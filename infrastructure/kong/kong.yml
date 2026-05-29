@@ -29,3 +29,26 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+
+  - name: keycloak-service
+    url: http://host.docker.internal:8090
+    routes:
+      - name: keycloak-route
+        paths:
+          - /realms
+          - /resources
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+
+  - name: frontend-service
+    url: http://host.docker.internal:3001
+    routes:
+      - name: frontend-route
+        paths:
+          - /
+        methods:
+          - GET
+        strip_path: false
